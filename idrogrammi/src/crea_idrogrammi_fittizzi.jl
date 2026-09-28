@@ -2,7 +2,7 @@ using Plots, Plots.Measures, CSV, DataFrames, Dates, Infiltrator, Printf, Ordere
 
 
 const OutputFolderIdrogrammi = "idrogrammi_fittizzi"
-const OutputFolderImmagini = "images"
+const OutputFolderImmagini = "immagini"
 const DoSaves = true
 
 gumbel(t, μ, β) = (1/β) * exp( -(t - μ)/β - exp(-(t - μ)/β) )

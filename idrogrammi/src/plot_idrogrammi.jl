@@ -136,7 +136,7 @@ function main()
     	    dfout_basement =    DataFrame(Tempo_s = Tempo_s_Vaia, Portata = portate_out[:, i])
     	    dfout_date =        DataFrame(Tempo_data = datevaia, Portata = portate_out[:, i])
     	    plt, name = plot_df(dfout_date, interbacino)
-    	    savefig(plt, joinpath("images/", name * ".pdf"))
+    	    savefig(plt, joinpath("immagini/", name * ".pdf"))
 		
     	    filepath = joinpath(OUTPUT_FOLDER_BM, "$(interbacino)")
     	    CSV.write(filepath, dfout_basement, header=false)
