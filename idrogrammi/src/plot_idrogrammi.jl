@@ -85,6 +85,7 @@ function main()
         "brenta_vecchio_1.csv", 
         "brenta_vecchio_2.csv",
         "brenta_vecchio_3.csv",
+        "brenta_vecchio_4.csv",
         "brenta_nuovo.csv"
     ]
 
@@ -98,16 +99,17 @@ function main()
     end
 
     portate_out = Array{Float64,2}(undef, n_datevaia, length(INPUT_FILE_NAMES))
-    portate_out[:, 1]  .= portate[:, 1]
-    portate_out[:, 2]  .= portate[:, 2]
-    portate_out[:, 3]  .= portate[:, 3] .- portate[:, 1]
-    portate_out[:, 4]  .= portate[:, 4] .- portate[:, 3] .- portate[:, 2]
-    portate_out[:, 5]  .= portate[:, 5] .- portate[:, 4]
-    portate_out[:, 6]  .= (portate[:, 6] .- portate[:, 5]) / 3.0
-    portate_out[:, 7]  .= portate[:, 7]
-    portate_out[:, 8]  .= portate[:, 8] .- portate[:, 7]
-    portate_out[:, 9]  .= portate[:, 9] .- portate[:, 8]
-    portate_out[:, 10] .= portate[:, 10] .- portate[:, 9] .- portate[:, 6]
+    portate_out[:, 1]  .= portate[:, 1]                                         # caldonazzo
+    portate_out[:, 2]  .= portate[:, 2]                     # levico    
+    portate_out[:, 3]  .= portate[:, 3] .- portate[:, 1]                        # centa
+    portate_out[:, 4]  .= portate[:, 4] .- portate[:, 3] .- portate[:, 2]       # brenta1
+    portate_out[:, 5]  .= portate[:, 5] .- portate[:, 4]                        # brenta2
+    portate_out[:, 6]  .= (portate[:, 6] .- portate[:, 5]) / 3.0                # brenta3
+    portate_out[:, 7]  .= portate[:, 7]                                         # brentavecchio1
+    portate_out[:, 8]  .= portate[:, 8]                                         # brentavecchio2
+    portate_out[:, 9]  .= portate[:, 9] .- portate[:, 8] .- portate[:, 7]       # brentavecchio3
+    portate_out[:,10]  .= portate[:, 10] .- portate[:, 9]                       # brentavecchio4
+    portate_out[:, 11] .= portate[:, 11] .- portate[:, 10] .- portate[:, 6]     # brentanuovo
 
     # Safety filter: avoid negative inlet discharge
     for i ∈ eachindex(portate_out)
@@ -125,6 +127,7 @@ function main()
         "BrentaVecchio1.csv", 
         "BrentaVecchio2.csv",
         "BrentaVecchio3.csv",
+        "BrentaVecchio4.csv",
         "BrentaNuovo.csv"
     ]
 

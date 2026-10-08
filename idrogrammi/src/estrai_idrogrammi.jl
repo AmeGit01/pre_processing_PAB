@@ -51,8 +51,9 @@ const GRUPPI = OrderedDict(
     "brenta_2" => [1323], # - 1341
     "brenta_3" => [1010], # - 1323
     "brenta_vecchio_1" => [843],
-    "brenta_vecchio_2" => [796], # - 843
-    "brenta_vecchio_3" => [765], # - 796
+    "brenta_vecchio_2" => [742], 
+    "brenta_vecchio_3" => [796], # - 843 - 742
+    "brenta_vecchio_4" => [765], # - 796
     "brenta_nuovo" => [783], # - 765 - 1010
 )
 
@@ -112,7 +113,7 @@ end
 # ---------------------------------------------------------------------
 
 function main()
-    df = carica_dati(INPUT_FILE)
+    df = carica_dati(joinpath("inputs", INPUT_FILE))
     println("Righe lette: ", nrow(df))
     println("Periodo: ", first(df.DATE), " -> ", last(df.DATE))
 
