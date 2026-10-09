@@ -86,7 +86,16 @@ function main()
         "brenta_vecchio_2.csv",
         "brenta_vecchio_3.csv",
         "brenta_vecchio_4.csv",
-        "brenta_nuovo.csv"
+        "brenta_nuovo.csv",
+		"valle_brenta_1.csv",
+		"valle_brenta_2.csv",
+		"valle_brenta_3.csv",
+		"valle_brenta_4.csv",
+		"valle_brenta_5.csv",
+		"valle_brenta_6.csv",
+		"valle_brenta_7.csv",
+		"valle_brenta_8.csv",
+		"valle_brenta_9.csv",
     ]
 
     portate     = Array{Float64,2}(undef, n_datevaia, length(INPUT_FILE_NAMES))
@@ -110,6 +119,16 @@ function main()
     portate_out[:, 9]  .= portate[:, 9] .- portate[:, 8] .- portate[:, 7]       # brentavecchio3
     portate_out[:,10]  .= portate[:, 10] .- portate[:, 9]                       # brentavecchio4
     portate_out[:, 11] .= portate[:, 11] .- portate[:, 10] .- portate[:, 6]     # brentanuovo
+	portate_out[:, 12] .= portate[:, 12] .- portate[:, 11]						# valle_brenta_1
+	portate_out[:, 13] .= portate[:, 13] .- portate[:, 12]						# valle_brenta_2
+	portate_out[:, 14] .= portate[:, 14] .- portate[:, 13]						# valle_brenta_3
+	portate_out[:, 15] .= portate[:, 15] .- portate[:, 14]						# valle_brenta_4
+	portate_out[:, 16] .= portate[:, 16] .- portate[:, 15]						# valle_brenta_5
+	portate_out[:, 17] .= portate[:, 17] .- portate[:, 16]						# valle_brenta_6
+	portate_out[:, 18] .= portate[:, 18] .- portate[:, 17]						# valle_brenta_7
+	portate_out[:, 19] .= portate[:, 19] .- portate[:, 18]						# valle_brenta_8
+	portate_out[:, 20] .= portate[:, 20] .- portate[:, 19]						# valle_brenta_9
+
 
     # Safety filter: avoid negative inlet discharge
     for i ∈ eachindex(portate_out)
@@ -128,7 +147,16 @@ function main()
         "BrentaVecchio2.csv",
         "BrentaVecchio3.csv",
         "BrentaVecchio4.csv",
-        "BrentaNuovo.csv"
+        "BrentaNuovo.csv",
+		"ValleBrenta1.csv",
+		"ValleBrenta2.csv",
+		"ValleBrenta3.csv",
+		"ValleBrenta4.csv",
+		"ValleBrenta5.csv",
+		"ValleBrenta6.csv",
+		"ValleBrenta7.csv",
+		"ValleBrenta8.csv",
+		"ValleBrenta9.csv",
     ]
 
     i = 1
@@ -139,8 +167,9 @@ function main()
     	    dfout_basement =    DataFrame(Tempo_s = Tempo_s_Vaia, Portata = portate_out[:, i])
     	    dfout_date =        DataFrame(Tempo_data = datevaia, Portata = portate_out[:, i])
     	    plt, name = plot_df(dfout_date, interbacino)
-    	    savefig(plt, joinpath("immagini/", name * ".pdf"))
-		
+    	    savefig(plt, joinpath("immagini/", name * ".png"))
+
+            # Salvataggio
     	    filepath = joinpath(OUTPUT_FOLDER_BM, "$(interbacino)")
     	    CSV.write(filepath, dfout_basement, header=false)
     	    println("Salvato: ", filepath)
